@@ -519,7 +519,7 @@ fn insert_with_mask(m: &str, expr: &Expr) -> Expr {
             expr.span(),
         );
         cumulative += count;
-        quote!((#expr as #ty & #mask) << #amt)
+        quote!((#ty::from(#expr) & #mask) << #amt)
     });
     or_all(clauses)
 }
